@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ldthanh0301/web-goi-y-mua-hang/issues"
   },
-  "homepage": "https://github.com/ldthanh0301/web-goi-y-mua-hang#readme"
+  "homepage": "https://github.com/ldthanh0301/web-goi-y-mua-hang#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
