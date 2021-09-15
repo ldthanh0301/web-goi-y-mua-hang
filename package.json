@@ -1,0 +1,22 @@
+{
+  "name": "web-goi-y-mua-hang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldthanh0301/web-goi-y-mua-hang.git"
+  },
+  "keywords": [
+    "web-goi-y-mua-hang"
+  ],
+  "author": "ldthanh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldthanh0301/web-goi-y-mua-hang/issues"
+  },
+  "homepage": "https://github.com/ldthanh0301/web-goi-y-mua-hang#readme"
+}
