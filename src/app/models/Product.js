@@ -3,10 +3,11 @@ const {Schema} = mongoose
 
 const Product = new Schema({
     name:  String, // String is shorthand for {type: String}
-    desription: String,
+    description: String,
     image:   String,
     price: Number,
-    value: Number
+    value: Number,
+    slug: String
 },{
     timestamps: true
 });

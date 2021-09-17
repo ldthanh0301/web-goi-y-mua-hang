@@ -1,6 +1,17 @@
+.text-primary {
+  color: #3f3d3d !important; }
+
 .text-sucess {
-    color: rgb(23, 247, 23);
-}
+  color: #17f717 !important; }
+
 .text-error {
-    color: rgb(230, 61, 10);
-}
+  color: #f71717 !important; }
+
+.text-line-clamp--3 {
+  display: -webkit-box;
+  min-height: 3.2rem;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1rem; }

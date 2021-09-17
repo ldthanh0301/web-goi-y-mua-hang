@@ -1,11 +1,13 @@
 const product = require('../models/Product');
+const slugify = require('slugify');
 
 class ProductController {
     // [GET] - /products/ - show list products
     index(req, res, next) {
         product.find({})
+            .lean()
             .then(products=>{
-                res.json(products)
+                res.render('product/index',{products:products})
             })
             .catch(next)
     }
@@ -24,6 +26,9 @@ class ProductController {
             image: req.body.image,
             price: req.body.price,
             value: req.body.value,
+            slug: slugify(req.body.name,{
+                lower:true
+            })
         })
         .then(products=>res.render('product/create',{isCreate:true}))
         .catch(err=>{
@@ -31,6 +36,12 @@ class ProductController {
             next(err)
         })
     }
+
+    // [GET] - /products/detail - show info product
+    show(req, res, next) {
+        res.render('product/detail')
+    }
+
 }
 
 module.exports = new ProductController();

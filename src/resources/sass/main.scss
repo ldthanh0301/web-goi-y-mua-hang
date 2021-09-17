@@ -1,0 +1,27 @@
+
+$text-clr: #dfdfdf;
+$text-primary: rgb(63, 61, 61);
+$text-border: #ccc;
+$text-sucess: rgb(23, 247, 23);
+$text-error: rgb(247, 23, 23);
+
+
+.text-primary {
+    color: $text-primary !important;
+}
+.text-sucess {
+    color:  $text-sucess !important;
+}
+.text-error {
+    color: $text-error !important;
+}
+
+.text-line-clamp--3 {
+    display: -webkit-box;
+    min-height: 3.2rem;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1rem;
+}
