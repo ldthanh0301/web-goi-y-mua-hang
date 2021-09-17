@@ -1,11 +1,19 @@
-const express = require('express')
+const productRoute = require('./product.route');
+const express = require('express');
+
 
 function route(app){
-    // define the home page route
+
+    app.use('/products', productRoute)
+
+    app.get('/admin', function (req, res){
+      res.render('admin');
+    })
+
     app.get('/', function (req, res) {
       res.render('home');
     })
-    // define the about route
+
     app.get('/about', function (req, res) {
       res.send('About birds')
     })
