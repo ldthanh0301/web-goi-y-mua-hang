@@ -1,19 +1,27 @@
+html {
+    font-size: 100%
+}
 
-$text-clr: #dfdfdf;
-$text-primary: rgb(63, 61, 61);
-$text-border: #ccc;
-$text-sucess: rgb(23, 247, 23);
-$text-error: rgb(247, 23, 23);
-
+body {
+    font-size: 1rem !important; 
+    line-height: 1rem !important;
+}
+$text-clr: #0a0a0a;
+$clr-black: #000;
+$text-clr-primary: #5a5a5a;
+$border-clr: #ccc;
+$text-clr-sucess: rgb(23, 247, 23);
+$text-clr-error: rgb(247, 23, 23);
+$text-clr-danger: rgb(207, 25, 25);
 
 .text-primary {
-    color: $text-primary !important;
+    color: $text-clr-primary !important;
 }
 .text-sucess {
-    color:  $text-sucess !important;
+    color:  $text-clr-sucess !important;
 }
 .text-error {
-    color: $text-error !important;
+    color: $text-clr-error !important;
 }
 
 .text-line-clamp--3 {
@@ -24,4 +32,51 @@ $text-error: rgb(247, 23, 23);
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1rem;
+}
+.app {
+    background-color: #fdfdfd;
+    .container {
+        background-color: #fff;
+        box-shadow: rgba(0, 0 ,0 , 0.05) -2px 2px 5px;
+
+        .product {
+            // &-image {
+                
+            // }
+            &-info {
+                &-name {
+                    color: $text-clr-primary;
+                    font-size: 1.75rem;
+                    margin: 0;
+                    letter-spacing: 1.5px;
+                }
+                &-price{
+                    display: block;
+                    color: $text-clr-danger;
+                    font-size: 1.25rem;
+                    letter-spacing: 1.5px;
+                    margin-top: 0.625rem;
+                }
+        
+                h6 {
+                    color: $text-clr;
+                    font-size: 1rem;
+                    margin-top: 0.625rem 0 0 0 ;
+                }
+        
+                p {
+                    color: $text-clr;
+                    letter-spacing: 1.3px;
+                    margin-top: 0.625rem;
+                    min-height: 4rem;
+                }
+        
+                .btn {
+                    margin-top: 0.625rem;    
+                }
+                
+            }
+        }
+    
+    }
 }

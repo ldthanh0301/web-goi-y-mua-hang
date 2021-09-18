@@ -1,5 +1,7 @@
 const productRoute = require('./product.route');
+const siteRoute = require('./site.route');
 const express = require('express');
+const { connect } = require('mongoose');
 
 
 function route(app){
@@ -10,13 +12,9 @@ function route(app){
       res.render('admin');
     })
 
-    app.get('/', function (req, res) {
-      res.render('home');
-    })
+    app.use('/', siteRoute);
 
-    app.get('/about', function (req, res) {
-      res.send('About birds')
-    })
+    
 }
 
 

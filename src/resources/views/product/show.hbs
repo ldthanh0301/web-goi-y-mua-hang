@@ -1,0 +1,20 @@
+{{!-- Show detaile product --}}
+<div class="product py-4">
+    <h5 class="text-primary">Chi tiết sản phẩm</h5>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 product-image">
+            <img class="w-100" src="/img/products/{{product.image}}" alt="Ảnh sản phẩm">
+        </div>
+        <div class="col-sm-6 product-info mt-5">
+            <h2 class="product-info-name">{{product.name}}</h2>
+            <span class="product-info-price">
+                {{product.price}}
+                <span class="product-info-dram">Đ</span>
+            </span> 
+            <h6>Thông tin sản phẩm</h6>
+            <p>{{product.description}}</p>
+            <a href="#" class="btn btn-primary">Mua ngay</a>
+        </div>
+    </div>
+</div>

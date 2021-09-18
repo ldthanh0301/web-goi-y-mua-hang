@@ -7,14 +7,19 @@ class ProductController {
         product.find({})
             .lean()
             .then(products=>{
-                res.render('product/index',{products:products})
+                res.render('product/index',{
+                    title: 'Danh sách sản phẩm',
+                    products
+                })
             })
             .catch(next)
     }
     
     // [GET] - /products/create - show form create
     create(req, res, next) {
-        res.render('product/create');
+        res.render('product/create',{
+            title: 'Thêm sản phẩm mới'
+        });
     }
 
     // [POST] - /products/store - store info product
@@ -37,9 +42,17 @@ class ProductController {
         })
     }
 
-    // [GET] - /products/detail - show info product
+    // [GET] - /products/:slug/detail - show info product
     show(req, res, next) {
-        res.render('product/detail')
+        product.findOne({slug: req.params.slug})
+            .lean()
+            .then(product => {
+                res.render('product/show', {
+                    title: 'Chi tiết sản phẩm',
+                    product
+                })
+            })
+            .catch(next)
     }
 
 }
