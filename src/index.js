@@ -3,6 +3,8 @@ const route = require('./routes/index.route')
 const exphbs  = require('express-handlebars');
 const path = require('path');
 const db = require('./app/config/db');
+const methodOverride = require('method-override');
+
 
 const app = express()
 const port = 3000
@@ -15,13 +17,19 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname,'public')))
 
+// sử dụng override method url ?_method=''
+app.use(methodOverride('_method'));
+
 // set view engine là handlebars
 
 app.engine('hbs',  exphbs({
   extname: '.hbs',
   helpers: {
     isdefined: function(value){
-       return value !== undefined;
+      return value !== undefined;
+    },
+    sum: function(a, b) {
+      return a + b;
     }
   }
 }))

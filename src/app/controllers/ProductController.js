@@ -22,7 +22,7 @@ class ProductController {
         });
     }
 
-    // [POST] - /products/store - store info product
+    // [POST] - /products/store - store info product new
     store(req, res, next) {
         console.log(req.body.image);
         product.create({
@@ -42,7 +42,7 @@ class ProductController {
         })
     }
 
-    // [GET] - /products/:slug/detail - show info product
+    // [GET] - /products/:slug/store - show info product
     show(req, res, next) {
         product.findOne({slug: req.params.slug})
             .lean()
@@ -55,6 +55,39 @@ class ProductController {
             .catch(next)
     }
 
+    // [GET] - /products/:id/edit - show form edit
+    edit(req, res, next) {
+        product.findOne({_id: req.params.id})
+            .lean()
+            .then(product => {
+                res.render('product/edit',{
+                    title: 'Chỉnh sửa thông tin sản phẩm',
+                    product
+                });
+            })
+            .catch(next)
+    }
+    // [PUTCH] - /products/:id/update - save info product edit
+    update(req, res, next) {
+        let obj= {}
+        if(req.body.image){
+            Object.assign(obj,{
+                image: req.body.image,    
+            })
+        }
+        product.updateOne({_id: req.params.id},
+            Object.assign(obj,{
+                name: req.body.name,    
+                description: req.body.description,    
+                slug: slugify(req.body.name),    
+                price: req.body.price,    
+                value: req.body.value,    
+            }))
+            .then(product => product ? res.send('thành công'):res.send('lỗi'))
+            .catch(err => {
+                res.send('lỗi')
+            })
+    }
 }
 
 module.exports = new ProductController();
