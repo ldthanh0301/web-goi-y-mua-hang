@@ -1,0 +1,41 @@
+<form method="POST" action="/products/handle-form-suggest" class="form-inline">
+    <h6 class="ml-2"> Gợi ý mua hàng:</h6>
+    <div class="form-group ml-2">
+        <input class="form-control" type="number" id="amoutOfMoney" name="amoutOfMoney" placeholder="Nhập số tiền cần mua">
+    </div>
+    <div class="form-group ml-2">
+        <select  class="form-control" name="productValue" id="productValue" >
+            <option value="">-- Chọn số giá trị cần lọc --</option>
+            <option value="price">Giá tiền</option>
+            <option value="value">Giá trị dinh dưỡng</option>
+        </select>
+    </div>
+    <div class="form-group ml-2">
+        <select  class="form-control" name="quantity" id="quantity">
+            <option value="">-- Chọn số lượng cần mua --</option>
+            <option value="1">Một món</option>
+            <option value="n">Số lượng không giới hạn</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary ml-4">Bất đầu</button>
+</form>
+<hr>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // đặt giá trị mặc định của form
+        var dataFormSuggest = JSON.parse('{{{dataFormSuggestJSON}}}');
+
+        if (dataFormSuggest) {
+            const amoutOfMoney = $('#amoutOfMoney');
+            amoutOfMoney.val(dataFormSuggest.amoutOfMoney);
+            
+            const productValueSelected = $(`#productValue option[value=${dataFormSuggest.productValue}]`);
+            
+            productValueSelected.attr('selected','selected');
+
+            const quantitySelected = $(`#quantity option[value=${dataFormSuggest.quantity}]`);
+            
+            quantitySelected.attr('selected','selected')
+        }
+    });
+</script>

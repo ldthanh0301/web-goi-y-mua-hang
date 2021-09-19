@@ -88,6 +88,40 @@ class ProductController {
                 res.send('lỗi')
             })
     }
+    // [POST] - /products/handle-form-suggest - handle form suggest products 
+    handleFormSuggest(req, res, next) { 
+        const dataFormSuggest = req.body;
+        const producsQuey = product.find({}).lean();
+        const quantity  = req.body.quantity;
+        const amoutOfMoney = req.body.amoutOfMoney;
+        let balance = 0;
+        function caibalo(products,amoutOfMoney) {
+            const productsSuggest =products.filter(product => {
+                if (amoutOfMoney > product.price) {
+                    amoutOfMoney -= product.price
+                    return product
+                }
+            })
+            balance = amoutOfMoney;
+            return productsSuggest
+        }
+        if (req.body.productValue)
+            producsQuey.sort({[req.body.productValue]:'desc'})
+                .then(productsSorted => {
+                    const productsSuggest = caibalo(productsSorted,amoutOfMoney);
+                    res.render('product/suggest',{
+                        title: 'Gợi ý mua hàng',
+                        products: productsSuggest,
+                        balance,
+                        dataFormSuggest,
+                        dataFormSuggestJSON:JSON.stringify(dataFormSuggest)
+
+                    })
+                })
+                .catch(next)
+    }
+
+   
 }
 
 module.exports = new ProductController();
