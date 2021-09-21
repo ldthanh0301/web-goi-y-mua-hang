@@ -1,0 +1,62 @@
+<form method="POST" action="">
+    <div class="row">
+        {{!-- Bảng các hàng hóa đã chọn --}}
+        <div class="col-md-6 px-4">
+            <legend class="mb-4">Danh sách sản phẩm đã chọn</legend>
+            <table class="table  table-bordered">
+                <thead>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá </th>
+                    <th>Thành tiền</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nước mắm</td>
+                        <td>1</td>
+                        <td>18000</td>
+                        <td>18000</td>
+                    </tr>
+                    <tr>
+                        <td>Nước mắm</td>
+                        <td>1</td>
+                        <td>18000</td>
+                        <td>18000</td>
+                    </tr>
+                    <tr>
+                        <td>Nước mắm</td>
+                        <td>1</td>
+                        <td>18000</td>
+                        <td>18000</td>
+                    </tr>
+                    <tr>
+                        <td>Nước mắm</td>
+                        <td>1</td>
+                        <td>18000</td>
+                        <td>18000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {{!-- thông tin đơn hàng --}}
+        <div class="col-md-6 ">
+            <legend class="mb-4">Thông tin đơn hàng</legend>
+            <div class="form-group">
+                <label for="name">Tên người mua</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên người mua">
+            </div>
+            <div class="form-group">
+                <label for="name">Số điện thoại</label>
+                <input type="number" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại">
+            </div>
+            <div class="form-group">
+                <label for="name">Đại chỉ</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ">
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <button class="btn btn-primary float-right">Đặt hàng</button>
+    <div class="clearfix"></div>
+</form>

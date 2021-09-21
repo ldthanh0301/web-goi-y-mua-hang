@@ -2,6 +2,7 @@ const productController = require('../app/controllers/ProductController');
 const express = require('express');
 const router = express.Router();
 
+router.get('/search',productController.find)
 router.put('/:id/update', productController.update);
 router.get('/:id/edit', productController.edit);
 router.get('/:slug/show', productController.show);

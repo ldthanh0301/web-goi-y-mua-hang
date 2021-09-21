@@ -13,5 +13,5 @@ const Product = new Schema({
 });
 
 Product.path('_id'); // ObjectId { ... }
-
+Product.index({name: 'text'});
 module.exports =  mongoose.model('Product', Product);

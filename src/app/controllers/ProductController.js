@@ -9,7 +9,8 @@ class ProductController {
             .then(products=>{
                 res.render('product/index',{
                     title: 'Danh sách sản phẩm',
-                    products
+                    products,
+                    filter:true
                 })
             })
             .catch(next)
@@ -49,7 +50,8 @@ class ProductController {
             .then(product => {
                 res.render('product/show', {
                     title: 'Chi tiết sản phẩm',
-                    product
+                    product,
+                    filter:true
                 })
             })
             .catch(next)
@@ -112,15 +114,23 @@ class ProductController {
                     res.render('product/suggest',{
                         title: 'Gợi ý mua hàng',
                         products: productsSuggest,
-                        balance,
+                        filter:true,
                         dataFormSuggest,
-                        dataFormSuggestJSON:JSON.stringify(dataFormSuggest)
-
+                        dataFormSuggestJSON:JSON.stringify(dataFormSuggest),
+                        balance
                     })
                 })
                 .catch(next)
     }
 
+    // [GET] - /products/search?q=
+    find(req, res, next) {
+        product.find({$text: {$search: req.query.q}})
+        .limit(10)
+        .exec(function(err, data) { 
+            res.status(200).json({data})
+        })
+    }
    
 }
 
