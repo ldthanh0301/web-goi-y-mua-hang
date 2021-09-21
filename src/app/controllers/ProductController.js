@@ -124,7 +124,7 @@ class ProductController {
     }
 
     // [GET] - /products/search?q=
-    find(req, res, next) {
+    search(req, res, next) {
         product.find({$text: {$search: req.query.q}})
         .limit(10)
         .exec(function(err, data) { 
