@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function (){
     function renderSearchSuggest(data) {
         let searchElement = $('#search-suggest')[0];
         if (data.length) {
-            let listProduct = data.map(product => `<li class="list-group-item">${product.name}</li>`)
+            let listProduct = data.map(product => `<li class="list-group-item"><a href="/products/${product.slug}/show">${product.name}</a></li>`)
             // let html = `<ul class="list-group">
             //                 <li class="list-group-item">sản phẩm</li>
             //                 <li class="list-group-item">sản phẩm</li>

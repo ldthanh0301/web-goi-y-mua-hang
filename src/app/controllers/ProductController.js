@@ -43,7 +43,7 @@ class ProductController {
         })
     }
 
-    // [GET] - /products/:slug/store - show info product
+    // [GET] - /products/:slug/show - show info product
     show(req, res, next) {
         product.findOne({slug: req.params.slug})
             .lean()
@@ -51,7 +51,7 @@ class ProductController {
                 res.render('product/show', {
                     title: 'Chi tiết sản phẩm',
                     product,
-                    filter:true
+                    filter:false
                 })
             })
             .catch(next)
