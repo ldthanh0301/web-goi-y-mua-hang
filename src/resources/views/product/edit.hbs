@@ -1,4 +1,4 @@
-<div class="my-2 py-4 px-4">
+<div class="py-4 px-4">
     {{#if (isdefined isCreate)}}
         <h3 class="text-sucess">Chỉnh sửa thành công</h3>
     {{else if (isdefined isCreate)}}
@@ -13,12 +13,16 @@
                 <input type="text" class="form-control" value="{{product.name}}" id="name" name="name" placeholder="Nhập tên khóa học">
             </div>
             <div class="form-group">
-                <label for="name">Giá sản phẩm</label>
+                <label for="price">Giá sản phẩm</label>
                 <input type="number" class="form-control" id="price" name="price" value="{{product.price}}">
             </div>
             <div class="form-group">
-                <label for="name">Giá trị dinh dưỡng</label>
-                <input type="number" class="form-control" id="value" name="value" value="{{product.value}}" >
+                <label for="value">Giá trị dinh dưỡng</label>
+                <input type="number" class="form-control" id="value" name="value" value="{{product.value}}">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Số lượng tối đa trên lần mua</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{product.quantity}}" >
             </div>
             <div class="form-group">
                 <label for="desription" >Mô tả sản phẩm</label>
@@ -29,7 +33,7 @@
                 <label for="image">Chọn ảnh</label>
                 <input type="file" class="form-control" id="image" name="image">
                 <div class="review-image" style="width:150px;height: 150px">
-                    <img class="d-inline-block w-100" src="/img/products/{{product.image}}" alt="" srcset="">
+                    <img class="d-inline-block w-100" src="{{product.images.[0]}}" alt="" srcset="">
                 </div>
             </div>
             

@@ -12,10 +12,17 @@ class SiteController {
             .catch(next)
     }
 
+    // [GET] - /payment?id= - show form payment with product id
     payment(req, res, next) {
-        res.render('payment' ,{
-            filter:false
-        })
+        product.find({_id: req.query.id})
+            .lean()
+            .then(products => {
+                res.render('payment' ,{
+                    products:products,
+                    filter:false
+                })
+            })
+            .catch(next)
     }
 
 }

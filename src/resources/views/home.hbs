@@ -1,16 +1,14 @@
 <div class="py-4">
-    <a class="btn btn-primary" href="/products/create" >Thêm sản phẩm</a>
-
      {{!-- Show list Courses --}}
     <div class="row">
         {{#each products}}
             <div class="mt-4 col-sm-3">
                 <div class="card">
-                    <img class="card-img-top" src='http://localhost:3000/img/products/{{this.image}}' alt="Card image cap">
+                    <img class="card-img-top p-3" src='{{this.images.[0]}}' alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title text-truncate"><a href="/products/{{this.slug}}/show" class="text-primary">{{this.name}}</a></h5>
                         <p class="card-text text-line-clamp--3" >{{this.description}}</p>
-                        <a href="/payment" class="btn btn-primary">Mua ngay</a>
+                        <a href="/payment?id={{this._id}}" class="btn btn-primary">Mua ngay</a>
                     </div>
                 </div>       
             </div>

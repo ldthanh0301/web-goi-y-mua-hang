@@ -7,19 +7,23 @@
     {{/if}}
     <div class="row">
         {{!-- Form create new product --}}
-        <form method="POST" action='/products/store' class="col-md-6">
+        <form method="POST" action='/admin/product/store' class="col-md-6" enctype="multipart/form-data">
             <legend>Thêm khóa học</legend>
             <div class="form-group">
                 <label for="name">Tên sản phẩm</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên sản phẩm">
             </div>
             <div class="form-group">
-                <label for="name">Giá sản phẩm</label>
+                <label for="price">Giá sản phẩm</label>
                 <input type="number" class="form-control" id="price" name="price" placeholder="Nhập giá sản phẩm">
             </div>
             <div class="form-group">
-                <label for="name">Giá trị dinh dưỡng</label>
-                <input type="number" class="form-control" id="value" name="value" placeholder="Nhập giá trị dinh dưỡng sản phẩm">
+                <label for="value">Giá trị dinh dưỡng</label>
+                <input type="number" class="form-control" id="value" name="value" value="{{product.value}}">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Số lượng tối đa có thể mua</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Nhập giá trị dinh dưỡng sản phẩm">
             </div>
             <div class="form-group">
                 <label for="desription" >Mô tả khóa học</label>
@@ -27,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="image">Chọn ảnh</label>
-                <input type="file" class="form-control" id="image" name="image" placeholder="Chọn ảnh">
+                <input type="file" class="form-control" id="image" name="images" placeholder="Chọn ảnh" multiple>
             </div>
             
             <button type="submit" class="btn btn-primary">Submit</button>

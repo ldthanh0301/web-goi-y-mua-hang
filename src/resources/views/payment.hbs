@@ -11,30 +11,15 @@
                     <th>Thành tiền</th>
                 </thead>
                 <tbody>
+                    {{#each products}}
+                    <p>{{this}}</p>
                     <tr>
-                        <td>Nước mắm</td>
+                        <td>{{this.name}}</td>
                         <td>1</td>
-                        <td>18000</td>
-                        <td>18000</td>
+                        <td>{{this.image}}</td>
+                        <td>{{this.price}}</td>
                     </tr>
-                    <tr>
-                        <td>Nước mắm</td>
-                        <td>1</td>
-                        <td>18000</td>
-                        <td>18000</td>
-                    </tr>
-                    <tr>
-                        <td>Nước mắm</td>
-                        <td>1</td>
-                        <td>18000</td>
-                        <td>18000</td>
-                    </tr>
-                    <tr>
-                        <td>Nước mắm</td>
-                        <td>1</td>
-                        <td>18000</td>
-                        <td>18000</td>
-                    </tr>
+                    {{/each}}
                 </tbody>
             </table>
         </div>

@@ -5,12 +5,12 @@
         {{#each products}}
             <div class="mt-4 col-sm-3">
                 <div class="card">
-                    <img class="card-img-top" src='http://localhost:3000/img/products/{{this.image}}' alt="Card image cap">
+                    <img class="card-img-top p-3" src='{{this.images.[0]}}' alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title text-truncate"><a href="/products/{{this.slug}}/show" class="text-primary">{{this.name}}</a></h5>
                         <div>Giá: {{this.price}}</div>
-                        <div>Số lượng: 1</div>
-                        <div>Giá trị dinh dưỡng: {{this.value}}</div>
+                        <div>Số lượng: {{this.sl}}</div>
+                        <div>Số lượng tối đa: {{this.quantity}}</div>
                         <p class="card-text text-line-clamp--3" >{{this.description}}</p>
                     </div>
                 </div>       
@@ -18,5 +18,6 @@
         {{/each}}
     </div>
     <button class="btn btn-primary mt-4">Mua ngay</button>
+    
 </div>
 

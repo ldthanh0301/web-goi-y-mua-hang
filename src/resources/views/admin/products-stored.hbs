@@ -1,7 +1,7 @@
-<form method="POST" action="/products/handle-actions-form" class="p-4">
+<form method="POST" action="/admin/product/handle-actions-form" class="p-4">
     {{!-- thùng rác --}}
     <div class="d-flex justify-content-between py-2">
-        <a class="btn btn-primary" href="/products/create" >Thêm sản phẩm</a>
+        <a class="btn btn-primary" href="/admin/product/create" >Thêm sản phẩm</a>
         <a class="d-inline-block " href="/admin/trash/products">Thùng rác ({{countDeleted}})</a>
     </div>
 
@@ -39,8 +39,8 @@
             {{#unless products}}
             <tr class="text-center">
                 <td colspan=5>
-                    Bạn chưa thêm khóa học
-                    <a href="/products/create">Thêm mới</a>
+                    Bạn chưa có sản phẩm
+                    <a href="/admin/product/create">Thêm sản phẩm</a>
                 </td>    
             </tr>
             {{/unless}}
@@ -57,7 +57,7 @@
                 <td>{{this.updatedAt}}</td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="/products/{{this._id}}/edit">Chỉnh sửa</a>
-                    <button class="btnDelete btn btn-danger btn-sm" data-id="{{this._id}}">Xóa</button>
+                    <button type="button" class="btnDelete btn btn-danger btn-sm" data-id="{{this._id}}">Xóa</button>
                 </td>
             </tr>
             {{/each}}

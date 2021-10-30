@@ -4,9 +4,11 @@ const {Schema} = mongoose
 const Product = new Schema({
     name:  String, // String is shorthand for {type: String}
     description: String,
-    image:   String,
+    images:   Array,
     price: Number,
     value: Number,
+    quantity: Number,
+    unitPrice: Number,
     slug: String
 },{
     timestamps: true
