@@ -1,0 +1,42 @@
+<div class="container">
+    <form class="register-form mt-4" action="/staff/store" method="post">
+        <div class="user-info">
+            <h3 >Thêm nhân viên</h3>
+            <div class="form-group">
+                <label for="fullname">Họ và tên:</label>
+                <input id="fullname" class="form-control" type="text" name="fullname">
+            </div>
+            <div class="form-group">
+                <label for="phone-number">Số điện thoại:</label>
+                <input id="phone-number" class="form-control" type="text" name="phone-number">
+            </div>
+            <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input id="address" class="form-control" type="text" name="address">
+            </div>
+            <div class="form-group">
+                <label for="position">Chức vụ</label>
+                <select name="position" id="position"  class="form-control">
+                    <option value="0">Nhân viên</option>
+                    <option value="1">Quản lý</option>
+                    <option value="2">Quản trị viên</option>
+                </select>
+            </div>
+            <div class="form-group">
+                    <label for="username">Tài khoản</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tài khoản" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Nhập số mật khẩu" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-confirm">Xác nhận mật khẩu</label>
+                    <input type="password" class="form-control" id="password-confirm" name="password-confirm" placeholder="Nhập xác nhận mật khẩu" required>
+                </div>
+            <input type="reset"  class="btn btn-danger" value="Hủy">
+            <input type="submit" class="btn btn-primary" value="Đăng ký">
+            
+        </div>
+    </form>
+</div>

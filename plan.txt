@@ -1,9 +1,9 @@
 1.  Tạo trang  admin
-    + Tạo sản phẩm
-    + List sản phẩn
+    + Tạo sản phẩm -> ok
+    + List sản phẩn -> ok
     + quản lý nhân viên
     + duyệt sản phẩm
 2.  Tạo các sản phẩm
-3.  Tạo lại bài toán cái balo với số tiền cao hơn
-4.  Tạo các filter  balo theo giá trị , theo số lượng nhiều
+3.  Tạo lại bài toán cái balo với số tiền cao hơn -> ok
+4.  Tạo các filter  balo theo giá trị , theo số lượng nhiều -> ok
 5.  Tạo middleware cấp quyền

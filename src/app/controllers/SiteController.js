@@ -7,7 +7,8 @@ class SiteController {
             .lean()
             .then(products=>res.render('home',{
                 products,
-                filter:true
+                filter:true,
+                user: req.session.user
             }))
             .catch(next)
     }
@@ -24,7 +25,16 @@ class SiteController {
             })
             .catch(next)
     }
-
+    login(req, res, next) {
+        res.render('login',{
+            layout:''
+        });
+    }
+    register(req, res, next) {
+        res.render('register', {
+            layout: ''
+        })
+    }
 }
 
 module.exports = new SiteController()

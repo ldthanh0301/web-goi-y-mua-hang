@@ -10,7 +10,8 @@ class ProductController {
                 res.render('product/index',{
                     title: 'Danh sách sản phẩm',
                     products,
-                    filter:true
+                    filter:true,
+                    user: req.session.user
                 })
             })
             .catch(next)
@@ -26,7 +27,6 @@ class ProductController {
 
     // [POST] - /products/store - store info product new
     store(req, res, next) {
-        console.log(req.body.image);
         product.create({
             name: req.body.name,
             description: req.body.description,
@@ -57,7 +57,8 @@ class ProductController {
                 res.render('product/show', {
                     title: 'Chi tiết sản phẩm',
                     product,
-                    filter:false
+                    filter:false,
+                    user: req.session.user
                 })
             })
             .catch(next)
@@ -70,7 +71,8 @@ class ProductController {
             .then(product => {
                 res.render('product/edit',{
                     title: 'Chỉnh sửa thông tin sản phẩm',
-                    product
+                    product,
+                    user: req.session.user
                 });
             })
             .catch(next)
@@ -107,7 +109,7 @@ class ProductController {
         let balance = 0;
         
         if (req.body.productValue){
-            // sắp xếp lại danh sách sản phẩm theo trường đc chọn
+            // sắp xếp lại danh sách sản phẩm theo trường đc chọn 
             producsQuery.sort({[req.body.productValue]:'desc'})
                 .then(productsSorted => {
                     const productsSuggest = caibalo(productsSorted,amoutOfMoney,quantity);

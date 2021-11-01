@@ -1,5 +1,5 @@
-<header class="position-fixed w-100">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header class="position-fixed w-100 bg-light">
+    <nav class="container navbar navbar-expand-lg navbar-light ">
         <a class="navbar-brand" href="/">
             <img class="nav-brand__img" src="/icon/favicon.svg" alt="">
         </a>
@@ -16,9 +16,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/products">Sản phẩm</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/products/suggest">Gợi ý sản phẩm</a>
-                </li>
             </ul>
             <form id="search-form" class="d-flex mx-5  position-relative" style="flex-grow:1" action="#" method="get">
                 <div class="form-group w-100 mb-0">
@@ -26,11 +23,34 @@
                 </div>
                 <div id="search-suggest" class="position-absolute" style="left:0; top:100%; right:0; z-index:1">
                 </div>
-
             </form>
+           
             <div class="account my-2 my-lg-0">
-                <a href="#" class="btn btn-primary">Đăng ký</a>
-                <a href="#" class="btn btn-success my-2 my-sm-0">Đăng nhập</a>
+                {{#if user}} 
+                <div class="dropdown open" >
+                    <div class="account_info" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <span class="account_info_usename"><i class="far fa-user"></i></span>
+                        <span class="account_info_usename">{{user.fullname}}</span>
+                    </div>
+                    <div class="dropdown-menu" style="left:auto; right:0;" aria-labelledby="triggerId">
+                        <span class="dropdown-item">Thông tin tài khoản</span>
+                        <hr>
+                        <a class="dropdown-item btn-primary" href="/user/logout">Đăng xuất</a>
+                    </div>
+                </div>
+                {{else }}
+                <div class="dropdown open" >
+                    <div class="account_info" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <span class="account_info_usename"><i class="far fa-user"></i></span>
+                    </div>
+                    <div class="dropdown-menu" style="left:auto; right:0;" aria-labelledby="triggerId">
+                        <a class="dropdown-item btn-primary" href="/user/login">Đăng nhập</a>
+                        <a class="dropdown-item btn-secondery" href="/user/register">Đăng ký</a>
+                    </div>
+                </div>
+                {{/if}}
             </div>
         </div>
     </nav>

@@ -4,10 +4,19 @@ const exphbs  = require('express-handlebars');
 const path = require('path');
 const db = require('./app/config/db');
 const methodOverride = require('method-override');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const app = express()
 const port = 3000;
-
+// add session
+app.use(cookieParser('login'))
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+}))
 // parsing req.body
 app.use(express.json()) 
 app.use(express.urlencoded({ extended: true })) 
@@ -29,9 +38,9 @@ app.engine('hbs',  exphbs({
     },
     sum: function(a, b) {
       return a + b;
-    }
-  }
-}))
+    },
+   
+}}))
 
 app.set('views', path.join(__dirname,'resources/views'))
 app.set('view engine', 'hbs')

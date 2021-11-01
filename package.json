@@ -22,8 +22,11 @@
   },
   "homepage": "https://github.com/ldthanh0301/web-goi-y-mua-hang#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
+    "express-session": "^1.17.2",
     "method-override": "^3.0.0",
     "mongoose": "^6.0.6",
     "multer": "^1.4.3",

@@ -14,6 +14,7 @@ class AdminController {
                 res.render('admin/products-stored', {
                     layout: 'admin',
                     title: 'Trang quản trị',
+                    staff: req.session.staff,
                     products
                 })
             })
