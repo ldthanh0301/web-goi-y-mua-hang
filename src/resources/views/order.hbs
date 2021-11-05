@@ -1,0 +1,91 @@
+<form method="POST" action="/orders/save" id="orderForm">
+    <div class="row">
+        {{!-- Bảng các hàng hóa đã chọn --}}
+        <div class="col-md-6 px-4">
+            <legend class="mb-4">Danh sách sản phẩm đã chọn</legend>
+            <table class="table  table-bordered">
+                <thead>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá </th>
+                    <th>Thành tiền</th>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td><img src="{{this.images.[0]}}" width="100px"  alt="" srcset=""></td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.sl}}</td>
+                        <td>{{this.price}}</td>
+                        <td>{{multiplication this.price this.sl}}</td>
+                        <input type="text" name="productId[]" value="{{this._id}}"  hidden>
+                        <input type="text" name="quantity[]" value="{{this.sl}}"  hidden>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <hr>
+            <div class="float-right m-2">
+                    Tổng tiền: {{total}}
+            </div>
+        </div>
+        {{!-- thông tin đơn hàng --}}
+        <div class="col-md-6 ">
+            <legend class="mb-4">Thông tin đơn hàng</legend>
+            <div class="form-group">
+                <label for="name">Tên người mua</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên người mua" value="{{user.fullname}}">
+            </div>
+            <div class="form-group">
+                <label for="name">Số điện thoại</label>
+                <input type="number" class="form-control" id="phone" name="phoneNumber" placeholder="{{user.phoneNumber}}" value={{ user.phoneNumber}}>
+            </div>
+            <div class="form-group">
+                <label for="name">Đại chỉ</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" value="{{user.address}}">
+            </div>
+            <hr>
+            <button class="btn btn-primary float-right">Đặt hàng</button>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</form>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let orderForm  = document.getElementById('orderForm');
+            orderForm.onsubmit  = (e) => {
+                e.preventDefault()
+                let productId = Array.from($("input[name='productId[]']")).map(e=>e.value)
+                let quantity =Array.from($("input[name='quantity[]']")).map(e=>e.value)
+                let address = $("input[name='address']")[0].value;
+                let phoneNumber = $("input[name='address']")[0].value;
+                let name = $("input[name='name']")[0].value;
+                
+                postData('/orders/save', { address,name, phoneNumber,productId,quantity })
+                .then(data => {
+                    alert(data.message);
+                });
+            }
+
+            async function postData(url = '', data = {}) {
+                // Default options are marked with *
+                const response = await fetch(url, {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    // mode: 'cors', // no-cors, *cors, same-origin
+                    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                    // credentials: 'same-origin', // include, *same-origin, omit
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    redirect: 'follow', // manual, *follow, error
+                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify(data) // body data type must match "Content-Type" header
+                });
+                return response.json(); // parses JSON response into native JavaScript objects
+            }
+
+           
+        })
+</script>

@@ -1,0 +1,63 @@
+<div class="py-4 px-4">
+    {{#if (isdefined isCreate)}}
+        <h3 class="text-sucess">Chỉnh sửa thành công</h3>
+    {{else if (isdefined isCreate)}}
+        <h3 class="text-error">Đã xảy ra lỗi</h3>
+    {{/if}}
+    <div class="row">
+        {{!-- Form create new order --}}
+        <form method="POST" action='/orders/{{order._id}}/update?_method=PUT' id="form-update">
+            <legend>Chỉnh sửa sản phẩm</legend>
+            <div class="form-group">
+                <label for="name">Tên khách hàng</label>
+                <input type="text" class="form-control" value="{{order.name}}" id="name" name="name" >
+            </div>
+            <div class="form-group">
+                <label for="address">Địa chỉ </label>
+                <input type="text" class="form-control" value="{{order.address}}" id="address" name="address" >
+            </div>
+            <div class="form-group">
+              <label for=""></label>
+              <table class="table  table-bordered">
+                <thead>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá </th>
+                    <th>Thành tiền</th>
+                </thead>
+                <tbody>
+                    {{#each order.products}}
+                    <tr>
+                        <td><img src="{{this.product.images.[0]}}" width="100px"  alt="" srcset=""></td>
+                        <td>{{this.product.name}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.product.price}}</td>
+                        <td>{{multiplication this.product.price this.quantity}}</td>
+                        <input type="text" name="productId[]" value="{{this.product._id}}"  hidden>
+                        <input type="text" name="quantity[]" value="{{this.quantity}}"  hidden>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                </table>
+            </div>
+            <div class="form-group">
+                <label for="status">Trạng thái đơn hàng</label>
+                <select class="form-control" name="status" id="status">
+                    <option value="0" {{caseSeletedStatus order.status 0}} >Chưa duyệt</option>
+                    <option value="1" {{caseSeletedStatus order.status 1}}>Đã duyệt</option>
+                    <option value="2" {{caseSeletedStatus order.status 2}}>Đã giao</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span>Tổng tiền: {{order.totalPrice}}</span>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+    </div>
+</div>
+
+<script>
+
+</script>

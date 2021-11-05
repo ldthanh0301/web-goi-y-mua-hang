@@ -3,14 +3,16 @@
     <div class="row">
         {{#each products}}
             <div class="mt-4 col-sm-3">
-                <div class="card">
+                <form action="/orders/create" method="post" class="card">
                     <img class="card-img-top p-3" src='{{this.images.[0]}}' alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title text-truncate"><a href="/products/{{this.slug}}/show" class="text-primary">{{this.name}}</a></h5>
                         <p class="card-text text-line-clamp--3" >{{this.description}}</p>
-                        <a href="/payment?id={{this._id}}" class="btn btn-primary">Mua ngay</a>
+                        <input type="text"  name="products[]" value="{{this._id}}"  hidden>
+                        <input type="text"  name="quantitys[]" value="1"  hidden>
+                        <button class="btn btn-primary">Mua ngay</button>
                     </div>
-                </div>       
+                </form>       
             </div>
         {{/each}}
     </div>

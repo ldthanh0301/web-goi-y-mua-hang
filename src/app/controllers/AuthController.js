@@ -3,13 +3,13 @@ const User = require('../models/User');
 
 
 module.exports.loginAdmin = function(req, res, next) {
-    res.render('auth/loginAdmin', {
+    res.render('admin/login', {
         layout:''
     });
 }
 
 module.exports.loginUser = function(req, res, next) {
-    res.render('auth/loginUser', {
+    res.render('user/login', {
         layout:''
     });
 }
@@ -30,7 +30,7 @@ module.exports.confirmStaffLogin  = (req, res, next) => {
                 res.send('Tài khoản hoặc mật khẩu không đúng')
                 return
             } else {
-                res.cookie('sessionId',staff.username, {signed:true});
+                res.cookie('sessionAdminId',staff.username, {signed:true});
                 req.session.staff = staff;
                 res.redirect('/admin/');
             }
@@ -63,7 +63,14 @@ module.exports.confirmUserLogin  = (req, res, next) => {
 module.exports.logoutUser  = (req, res, next) => {
     res.clearCookie('sessionId')
     req.session.destroy()
-    res.redirect('/user/login')
+    res.redirect('/login')
 }
 
+
+// logoutAdmin
+module.exports.logoutAdmin  = (req, res, next) => {
+    res.clearCookie('sessionAdminId')
+    req.session.destroy()
+    res.redirect('/admin/login')
+}
 

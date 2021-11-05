@@ -39,6 +39,30 @@ app.engine('hbs',  exphbs({
     sum: function(a, b) {
       return a + b;
     },
+    multiplication: function(a, b) {
+      return a * b;
+    },
+    toNumber: function(a){
+      return parseInt(a);
+    },
+    caseStatus: function(status){
+        switch(status) {
+          case 0 : 
+            return "Chưa duyệt" 
+          case 1 : 
+            return "Đã duyệt" 
+          case 2 : 
+            return "Đã giao"
+          default : 
+            return "Chưa duyệt"
+        }
+    },
+    caseSeletedStatus: function(status,check){
+      if (status ==check) {
+        return "selected"
+      }
+      return ""
+    },
    
 }}))
 

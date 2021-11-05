@@ -15,7 +15,7 @@ class UserController {
     store(req, res, next) {
         User.create({
             fullname :  req.body.fullname, 
-            phoneNumber : req.body.phoneNumber,
+            phoneNumber : req.body.phoneNumber.toString(),
             address :   req.body.address,
             username : req.body.username,
             password : req.body.password,
@@ -31,30 +31,30 @@ class UserController {
        .catch(next);
     }
     // [Get] - /user/login - Login
-    login(req, res, next) {
-        res.render('user/login', {
-            layout:''
-        })
-    }
-    // [POST] -/user/login - confirmLogin
-    confirmLogin(req, res, next) {
-        User.findOne({username: req.body.username},
-            (err,user) => {
-                if(err)(next(err));
-                if(user) {
-                    let pass = req.body.password;
-                    if(user.password === pass){
-                        res.render('admin/products-stored.hbs',{
-                            layout:'admin'
-                        })
-                    } else {
-                        res.send('Tài khoản hoặc mật khẩu không đúng')
-                    }
-                }else {
-                    res.send('Tài khoản hoặc mật khẩu không đúng')
-                }
-            })
-    }
+    // login(req, res, next) {
+    //     res.render('user/login', {
+    //         layout:''
+    //     })
+    // }
+    // // [POST] -/user/login - confirmLogin
+    // confirmLogin(req, res, next) {
+    //     User.findOne({username: req.body.username},
+    //         (err,user) => {
+    //             if(err)(next(err));
+    //             if(user) {
+    //                 let pass = req.body.password;
+    //                 if(user.password === pass){
+    //                     res.render('admin/products-stored.hbs',{
+    //                         layout:'admin'
+    //                     })
+    //                 } else {
+    //                     res.send('Tài khoản hoặc mật khẩu không đúng')
+    //                 }
+    //             }else {
+    //                 res.send('Tài khoản hoặc mật khẩu không đúng')
+    //             }
+    //         })
+    // }
 }
 
 module.exports = new UserController();

@@ -1,10 +1,12 @@
 {{!-- Show list Courses --}}
-<div class="py-4">
+<form class="py-4" action="/orders/create" method="post">
     <span >Số tiền còn lại: {{balance}}</span>
     <div class="row">
         {{#each products}}
             <div class="mt-4 col-sm-3">
                 <div class="card">
+                    <input type="text" name="products[]" value="{{this._id}}" hidden>
+                    <input type="text" name="quantitys[]" value="{{this.sl}}" hidden>
                     <img class="card-img-top p-3" src='{{this.images.[0]}}' alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title text-truncate"><a href="/products/{{this.slug}}/show" class="text-primary">{{this.name}}</a></h5>
@@ -17,7 +19,7 @@
             </div>
         {{/each}}
     </div>
-    <button class="btn btn-primary mt-4">Mua ngay</button>
+    <button type="submit" class="btn btn-primary mt-4">Mua ngay</button>
     
-</div>
+</form>
 

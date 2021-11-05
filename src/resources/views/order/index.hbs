@@ -1,0 +1,129 @@
+<form method="POST" action="/admin/product/handle-actions-form" class="p-4">
+    {{!-- thùng rác --}}
+    <div class="d-flex justify-content-between py-2">
+        <a class="d-inline-block " href="/admin/trash/products">Thùng rác ({{countDeleted}})</a>
+    </div>
+
+    <div class="d-flex">
+        <select id="selectAction" name="action" class="form-control" style="max-width: 200px;">
+            <option value="">Chọn hành động</option>
+            <option value="delete">Xóa</option>
+        </select>
+        <button id="btnSummit" class="btn btn-primary ml-2" disabled> Thực hiện</button>
+    </div>
+
+    <table class="table mt-4" > 
+        <thead>
+            <tr>
+                <th scope="col">
+                    <div class="form-check d-flex align-items-center">
+                        <input id="checkAll" type="checkbox">
+                        <label class="ml-2" for="checkAll">Chọn tất cả</label>
+                    </div>
+                </th>
+
+                <th scope="col">STT</th>
+                <th scope="col">
+                    Tên khách hàng
+                    <span class="oi oi-sort-ascending"></span>
+                </th>
+                <th scope="col">
+                    Địa chỉ
+                </th>
+                <th scope="col">Tráng thái</th>
+                <th scope="col">Tùy chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            {{#each orders}}
+            <tr>
+                <th scope="row">
+                    <div class="form-check">
+                        <input type="checkbox" name="courseIds[]" value="{{this._id}}">
+                    </div>
+                </th>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.address}}</td>
+                <td>{{caseStatus this.status}}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/admin/orders/{{this._id}}/edit">Chỉnh sửa</a>
+                    <button type="button" class="btnDelete btn btn-danger btn-sm" data-id="{{this._id}}">Xóa</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
+
+<form id="frmDeleteCourse" method="POST" action='/orders/{{this._id}}?_method=delete'></form>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+         // Delete
+        var btnDeletes = document.getElementsByClassName('btnDelete');
+        var frmDeleteCourse = document.getElementById('frmDeleteCourse');
+        let isSelect = false;
+        let isCheck = false;
+
+        Array.from(btnDeletes).forEach( btnDelete => {
+            btnDelete.onclick = function(event) {
+                let orderId = this.getAttribute('data-id');
+                frmDeleteCourse.action = `/orders/${orderId}?_method=DELETE`;
+                frmDeleteCourse.submit();
+            }
+        })
+
+        // checkAll
+
+        var checkboxAll = $('#checkAll');
+        var checkCourseItems = $("input[name='courseIds[]']")
+
+        checkboxAll.change(function(event) {
+
+            var isCheckedAll = checkboxAll.prop('checked')
+            checkCourseItems.prop('checked',isCheckedAll)    
+            isCheck = isCheckedAll;
+
+            if( isCheckedAll && isSelect) btnSummit.prop('disabled', false)
+            else btnSummit.prop('disabled', true)
+        })
+
+        checkCourseItems.change (function (event) {
+            let counter=0;
+            Array.from(checkCourseItems)
+                .forEach( courseId => {
+                    if(courseId.checked){
+                        ++counter
+                    }  
+                })
+            var isCheckAll = counter === checkCourseItems.length
+            isCheck = counter >0 
+
+            checkboxAll.prop('checked', isCheckAll)
+
+            if( isCheck && isSelect) btnSummit.prop('disabled', false)
+            else btnSummit.prop('disabled', true)
+            
+        })
+
+        // select Action
+        var selectAction = $('#selectAction')
+        selectAction.change( function(event) {
+            isSelect =!!selectAction.find(':selected')[0].value
+            
+            if( isCheck && isSelect) btnSummit.prop('disabled', false)
+            else btnSummit.prop('disabled', true)
+        })
+
+        // sự kiện submit
+        var btnSummit = $('#btnSummit')
+
+        btnSummit.click( function(e) {
+            //e.preventDefault()
+
+        })
+    })
+</script>
